@@ -11,6 +11,7 @@ local function declare (name, initval)
 end
 
 local oot = require('bizhawk-co-op\\helpers\\oot')
+local log = require('bizhawk-co-op\\log')
 
 local oot_rom = {}
 
@@ -19,6 +20,7 @@ local player_num = mainmemory.read_u8(0x401C00)
 
 -- gives an item
 local get_item = function(item)
+	log.message('item', 'in function get_item. item.i = ' .. item.i)
 	if (item.i == 0) then
 		-- Trying to place padded items
 		printOutput("[Warn] Received an invalid item!")
@@ -27,6 +29,7 @@ local get_item = function(item)
 		local internal_count = mainmemory.read_u16_be(0x11A660)
 		internal_count = internal_count + 1
 		mainmemory.write_u16_be(0x11A660, internal_count)
+		log.message('item', 'in function get_item. internal_count (0x11A660) incremented to ' .. internal_count)
 		return
 	end
 
@@ -46,6 +49,7 @@ local player_names = {}
 
 
 local save_entry = function(key, value)
+	log.message('item', 'in function save_entry. key = ' .. key .. ', value.i = ' .. value.i .. ', tabletostring(value) = ' .. tabletostring(value))
 	if value.i == 0 then
 		return
 	end
@@ -55,6 +59,7 @@ local save_entry = function(key, value)
 	local f = io.open(file_loc, "a")
 
 	if f then
+		log.message('item', 'writing to .dat file: ' .. key .. ',' .. tabletostring(value))
 		f:write(key .. ',' .. tabletostring(value) .. '\n')
 		f:close()
 	end
@@ -62,6 +67,7 @@ end
 
 
 local load_save = function()
+	log.message('item', 'in function load_save')
 	-- open file
 	local file_loc = '.\\bizhawk-co-op\\savedata\\' .. gameinfo.getromname() .. '.dat'
 	local f = io.open(file_loc, "r")
@@ -115,9 +121,11 @@ local function processQueue()
 		if received_counter < internal_count then
 			mainmemory.write_u16_be(0x11A660, received_counter)
 			printOutput("[Warn] Game has more items than Script is aware of.")
+			log.message('item', 'received counter = ' .. received_counter .. ' < internal_count = ' .. internal_count .. ' (something is wrong)')
 		end
 		-- if the internal counter is behind, give the next item
 		if received_counter > internal_count then
+			log.message('item', 'received counter = ' .. received_counter .. ' > internal_count = ' .. internal_count .. ' (working correctly)')
 			local item = received_items[internal_count + 1]
 			get_item(item)
 		end

@@ -2,6 +2,8 @@
 --author: TheOnlyOne
 local messenger = {}
 
+local log = require("bizhawk-co-op\\log")
+
 --list of message types
 messenger.ERROR = -1
 messenger.MEMORY = 0
@@ -137,6 +139,7 @@ function messenger.send(client_socket, user, message_type, ...)
 	--encode the message
 	local message = message_type_to_char[message_type] .. user .. ',' .. encoder(data)
 	--send the message
+	log.message('messenger', 'sending message: ' .. message)
 	client_socket:send(message .. "\n")
 end
 
@@ -213,6 +216,9 @@ function messenger.receive(client_socket, nonblocking)
 		else
 			return messenger.ERROR, "[UNEXPECTED ERROR]"
 		end
+	else
+		--log message
+		log.message('messenger', 'received message: ' .. message)
 	end
 
 	--determine message type
