@@ -30,14 +30,14 @@ Items obtained by a player are given to everyone. Items locations are split such
 
 Nothing is shared, however there are now player specific items which are mixed between all the worlds. So if you obtain an item for yourself only you get it. If you obtain an item for another player then only they get it. This effectively means everyone will be playing different intermingled seeds.
 
-This is only works with [My OoT Rando](https://github.com/TestRunnerSRL/OoT-Randomizer/tree/Dev) or [OoT Rando 3.0 Release](https://github.com/AmazingAmpharos/OoT-Randomizer/releases/tag/v3.0). Set the Player Count to the number and use the same settings and seed. Each player should then set a unique Player ID (from 1 to the Player Count). The output filename should be the **same** for every player except the last number which indicates the player ID (excluding `-comp`). The logic will guarantee that every player can beat the game.  
+This is only works with [TestRunner's OoT Rando](https://github.com/TestRunnerSRL/OoT-Randomizer/tree/Dev) or [OoT Rando 3.0 Release](https://github.com/AmazingAmpharos/OoT-Randomizer/releases/tag/v3.0). Set the Player Count to the number and use the same settings and seed. Each player should then set a unique Player ID (from 1 to the Player Count). The output filename should be the **same** for every player except the last number which indicates the player ID (excluding `-comp`). The logic will guarantee that every player can beat the game.
 * **2-Player File name example:** 
 > - `OoT_R4AR3PKKPKF8UK7DSA_TestSeed_W2P1-comp.z64`
 > - `OoT_R4AR3PKKPKF8UK7DSA_TestSeed_W2P2-comp.z64` 
 
 ## Setup
 There are two different methods to install.
-* Run the PowerShell script, Download it here: [bizhawk-co-op.ps1](https://github.com/TestRunnerSRL/bizhawk-co-op/releases). I suggest placing it wherever you want to install Bizhawk. To install it, right-click it and select "Run with PowerShell". This will download & install a fresh copy of BizHawk with all the required files in their correct locations.  
+* Run the PowerShell script, Download it here: [bizhawk-co-op.ps1](https://github.com/Altripp/bizhawk-co-op/releases). I suggest placing it wherever you want to install Bizhawk. To install it, right-click it and select "Run with PowerShell". This will download & install a fresh copy of BizHawk with all the required files in their correct locations.  
 **OR**  
 * You can manually download the files, install and move them in the correct locations as described below.
 
@@ -47,7 +47,7 @@ There are two different methods to install.
 - The co-op script should be compatible for Bizhawk `1.12.0+` and `2.2.2+`
 * (2) [BizHawk prerequisite installer](https://github.com/TASVideos/BizHawk-Prereqs/releases/tag/2.1) (run this)
 * (3) [luasocket](http://files.luaforge.net/releases/luasocket/luasocket/luasocket-2.0.2/luasocket-2.0.2-lua-5.1.2-Win32-vc8.zip)
-* (4) [bizhawk-co-op](https://github.com/TestRunnerSRL/bizhawk-co-op/releases)
+* (4) [bizhawk-co-op](https://github.com/Altripp/bizhawk-co-op/releases)
 
 ### Directory structure
 
