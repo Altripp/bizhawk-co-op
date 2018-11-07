@@ -8,27 +8,27 @@ config = {}
 
 
 function strsplit(inputstr, sep, max)
-  if not inputstr then
-    return {}
-  end
+	if not inputstr then
+		return {}
+	end
 
-  if not sep then
-    sep = ","
-  end
-  local t={} ; i=1
-  for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
-    if max and i > max then
-      if t[i] then
-        t[i] = t[i] .. sep .. str
-      else
-      	t[i] = str
-      end
-    else
-      t[i] = str
-      i = i + 1
-    end
-  end
-  return t
+	if not sep then
+	sep = ","
+	end
+	local t={} ; i=1
+	for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
+		if max and i > max then
+			if t[i] then
+				t[i] = t[i] .. sep .. str
+			else
+				t[i] = str
+			end
+		else
+			t[i] = str
+			i = i + 1
+		end
+	end
+	return t
 end
 
 
