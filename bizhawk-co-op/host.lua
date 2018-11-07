@@ -3,6 +3,7 @@
 local socket = require("socket")
 local http = require("socket.http")
 local sync = require("bizhawk-co-op\\sync")
+local log = require("bizhawk-co-op\\log")
 
 local host = {}
 

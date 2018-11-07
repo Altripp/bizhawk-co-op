@@ -2,6 +2,8 @@
 --author: TheOnlyOne
 local messenger = {}
 
+local log = require("bizhawk-co-op\\log")
+
 --list of message types
 messenger.ERROR = -1
 messenger.MEMORY = 0
@@ -136,6 +138,10 @@ function messenger.send(client_socket, user, message_type, ...)
 	end
 	--encode the message
 	local message = message_type_to_char[message_type] .. user .. ',' .. encoder(data)
+	--if the message is not a ping, log it
+	if message:sub(1,1) != 'p' then
+		log.message('messenger', 'sending message: ' .. message)
+	end
 	--send the message
 	client_socket:send(message .. "\n")
 end
@@ -212,6 +218,11 @@ function messenger.receive(client_socket, nonblocking)
 			return messenger.ERROR, "[CLOSED]"
 		else
 			return messenger.ERROR, "[UNEXPECTED ERROR]"
+		end
+	else
+		--if the message is not a ping, log it
+		if message:sub(1,1) != 'p' then
+			log.message('messenger', 'received message: ' .. message)
 		end
 	end
 

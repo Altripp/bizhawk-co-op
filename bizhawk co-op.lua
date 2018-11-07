@@ -6,7 +6,6 @@ local txtUser, txtPass, lblUser, lblPass, ddRamCode, lblRamCode
 local lblPort, txtPort
 config = {}
 
-
 function strsplit(inputstr, sep, max)
 	if not inputstr then
 		return {}
@@ -33,16 +32,17 @@ end
 
 
 local sync = require("bizhawk-co-op\\sync")
-
+local log = require("bizhawk-co-op\\log")
 
 --Add a line to the output. Inserts a timestamp to the string
 function printOutput(str) 
+	log.message('debug', str)
 	local text = forms.gettext(text1)
 	local pos = #text
 	forms.setproperty(text1, "SelectionStart", pos)
 
 	str = string.gsub (str, "\n", "\r\n")
-	str = "[" .. os.date("%H:%M:%S", os.time()) .. "] " .. str
+	str = "[" .. os.date('%X') .. "] " .. str
 	if pos > 0 then
 		str = "\r\n" .. str
 	end
