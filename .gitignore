@@ -25,6 +25,8 @@ socket/
 
 *.exe
 
+*.exe.config
+
 config\.ini
 
 *.json
