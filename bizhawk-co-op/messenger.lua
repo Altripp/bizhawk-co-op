@@ -139,7 +139,7 @@ function messenger.send(client_socket, user, message_type, ...)
 	--encode the message
 	local message = message_type_to_char[message_type] .. user .. ',' .. encoder(data)
 	--if the message is not a ping, log it
-	if message:sub(1,1) != 'p' then
+	if message:sub(1,1) ~= 'p' then
 		log.message('messenger', 'sending message: ' .. message)
 	end
 	--send the message
@@ -221,7 +221,7 @@ function messenger.receive(client_socket, nonblocking)
 		end
 	else
 		--if the message is not a ping, log it
-		if message:sub(1,1) != 'p' then
+		if message:sub(1,1) ~= 'p' then
 			log.message('messenger', 'received message: ' .. message)
 		end
 	end
