@@ -352,6 +352,7 @@ function oot_rom.processMessage(their_user, message)
 	end
 end
 
+load_save()
 
 setmetatable(_G, old_global_metatable)
 
